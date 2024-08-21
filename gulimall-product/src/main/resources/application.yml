@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    username: root
+    password: rootroot
+    url: jdbc:mysql://47.99.100.202:23306/gulimall_pms?nicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
