@@ -3,6 +3,7 @@ package com.daodao.gulimall.member.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.daodao.gulimall.member.feign.CouponFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +30,24 @@ import com.daodao.common.utils.R;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    CouponFeignService couponFeignService;
+
+    /**
+     * 获取当前会员的所有优惠券
+     * @return R 返回当前会员信息和优惠券信息
+     */
+    @RequestMapping("/coupons")
+    public R test() {
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setNickname("张三");
+
+        R memberCoupons = couponFeignService.memberCoupons();
+
+        return R.ok().put("member", memberEntity).put("coupons", memberCoupons.get("coupons"));
+
+    }
 
     /**
      * 列表
