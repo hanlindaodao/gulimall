@@ -21,6 +21,14 @@ spring:
             - Path=/api/product/**
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: third_party_route
+          uri:
+            lb://gulimall-third-party
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
 ## 前端项目，/api
 ## http://localhost:88/api/product/category/list/tree http://localhost:10000/product/category/list/tree
 
